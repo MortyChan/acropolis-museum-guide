@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>卫城博物馆文物解读助手</title>
+    <meta
+      name="description"
+      content="上传在卫城博物馆拍摄的照片，获得中文参观辅助解读。"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <section class="intro-panel" aria-label="应用介绍">
+        <div class="intro-image" role="img" aria-label="雅典卫城博物馆与帕台农神庙雕塑的参观氛围"></div>
+        <div class="intro-copy">
+          <p class="eyebrow">Acropolis Museum Guide</p>
+          <h1>卫城博物馆文物解读助手</h1>
+          <p>
+            上传现场拍摄的雕塑、陶器、浮雕或展陈照片，获得一份适合边走边看的中文解读。
+          </p>
+        </div>
+      </section>
+
+      <section class="workspace" aria-label="照片解读工作区">
+        <form class="upload-panel" id="interpretForm">
+          <div class="panel-heading">
+            <div>
+              <p class="eyebrow">Step 1</p>
+              <h2>上传照片</h2>
+            </div>
+            <span class="limit-badge">JPG / PNG / WebP / HEIC，最大 8MB</span>
+          </div>
+
+          <label class="drop-zone" id="dropZone" for="imageInput">
+            <input
+              id="imageInput"
+              name="image"
+              type="file"
+              accept="image/jpeg,image/png,image/webp,image/heic,image/heif"
+              capture="environment"
+            />
+            <span class="upload-icon" aria-hidden="true">+</span>
+            <span class="drop-title">选择照片或拖入图片</span>
+            <span class="drop-hint">建议拍清展牌、轮廓、材质与关键细节</span>
+          </label>
+
+          <figure class="preview-card is-empty" id="previewCard">
+            <img id="previewImage" alt="待解读的文物照片预览" />
+            <figcaption id="fileMeta">尚未选择图片</figcaption>
+          </figure>
+
+          <div class="actions">
+            <button type="submit" id="submitButton" disabled>开始解读</button>
+            <button type="button" class="ghost-button" id="resetButton" disabled>清除</button>
+          </div>
+          <p class="status-line" id="statusLine" role="status" aria-live="polite"></p>
+        </form>
+
+        <section class="result-panel" aria-label="文物解读结果">
+          <div class="panel-heading">
+            <div>
+              <p class="eyebrow">Step 2</p>
+              <h2>解读结果</h2>
+            </div>
+          </div>
+
+          <div class="empty-state" id="emptyState">
+            <p>选择一张照片后，这里会生成文物背景、艺术特征和参观提示。</p>
+          </div>
+
+          <article class="result-card" id="resultCard" hidden>
+            <header>
+              <span class="result-kicker">可能文物</span>
+              <h3 id="resultTitle"></h3>
+              <p id="resultPeriod"></p>
+            </header>
+
+            <div class="result-grid">
+              <section>
+                <h4>历史背景</h4>
+                <p id="resultDescription"></p>
+              </section>
+              <section>
+                <h4>艺术特征</h4>
+                <p id="resultVisualClues"></p>
+              </section>
+              <section>
+                <h4>馆内语境</h4>
+                <p id="resultMuseumContext"></p>
+              </section>
+              <section>
+                <h4>参观提示</h4>
+                <p id="resultVisitorTip"></p>
+              </section>
+            </div>
+
+            <aside class="confidence-note">
+              <h4>不确定性说明</h4>
+              <p id="resultConfidence"></p>
+            </aside>
+          </article>
+        </section>
+      </section>
+
+      <footer class="site-footer">
+        <p>
+          AI 解读仅作参观辅助，不能替代馆方说明牌、专业鉴定或正式学术出版物。若图像不清晰，请结合展牌文字再次确认。
+        </p>
+      </footer>
+    </main>
+
+    <script src="config.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
